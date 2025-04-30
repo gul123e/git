@@ -1,6 +1,7 @@
 
 #---------------------------------------
 #  Game Mechanics
+#gul e sameen
 #    Student A (team lead)
 #---------------------------------------
 
@@ -11,12 +12,10 @@ def welcome_message():
     Parameters: None
     Returns: None
     """
-    #------------------------
-    # Add your code here
-    #------------------------
-    raise NotImplementedError("This function is not implemented yet.")
-    #------------------------
-#---------------------------------------
+   print("welcome to the game")
+   print("you are the player")
+   print("try to give correct answers")
+   print("you win")
     
 def choose_category(categories):
     """
@@ -28,14 +27,15 @@ def choose_category(categories):
     Returns:
     - str: The chosen category.
     """
-    #------------------------
-    # Add your code here
-    #------------------------
-    raise NotImplementedError("This function is not implemented yet.")
-    #------------------------
-
-#---------------------------------------
-
+  print("choose catergory")
+for i,c in enumerate(categories,1):
+    print(f"{i}.{c}")
+while True:
+    choice=input():
+    if choice.isdigit() and 1 <= int(choice) <=len(categories):
+        return categories[int(choice)-1]
+    else:
+        print("invalid try again")
 def display_score(score, round_number):
     """
     Display the current score and round number to the player.
@@ -46,14 +46,8 @@ def display_score(score, round_number):
 
     Returns: None
     """
-    #------------------------
-    # Add your code here
-    #------------------------
-    raise NotImplementedError("This function is not implemented yet.")
-    #------------------------
-
-#---------------------------------------
-    
+    print(f"\ln Round(round_number)")
+    print(f"current score :{score}\ln")
 def game_over_message(final_score):
     """
     Display a "game over" message along with the player's final score.
@@ -63,13 +57,9 @@ def game_over_message(final_score):
 
     Returns: None
     """
-    #------------------------
-    # Add your code here
-    #------------------------
-    raise NotImplementedError("This function is not implemented yet.")
-    #------------------------
-
-#---------------------------------------
+    print(f"\ln game over")
+    print(f"your final score is {final_score}")
+    
     
 def run_game_rounds(categories):
     """
@@ -80,17 +70,31 @@ def run_game_rounds(categories):
 
     Returns: None
     """
-    #------------------------
-    # Add your code here
-    #------------------------
-    raise NotImplementedError("This function is not implemented yet.")
-    #------------------------
-
-#---------------------------------------
-        
-def validate_answer(player_answer, correct_answer):
-    """
-    Validate the player's answer (correct or incorrect).
+    score=0
+    round_number=1
+    incorrect_answers=0
+    welcome_message()
+    while round_number<=5 and not check_game_over(incorrect_answers):
+        display_score(score,round_number)
+        category=choose_category(categories)
+        print(f"you choose {category}")
+   q=f"what is 2+3?"
+   correct_answers="4"
+   player_answer=input( f"{f}")
+   if validate_answers(player_answer,correct_answer):
+       print("correct\ln")
+       score=update_score(score,True):
+   else:
+       print(f"{correct_answer}")
+       score=update_score(score,False)
+       incorrect_answers+=1
+    if check_game_over(incorrect_answers):
+        break
+    round_number=next_round(round_number)
+game_over_message(score)
+restart_or_exit_()
+       
+     answer (correct or incorrect).
 
     Parameters:
     - player_answer (str): The answer provided by the player.
@@ -118,14 +122,7 @@ def update_score(score, correct):
     Returns:
     - int: The updated score.
     """
-    #------------------------
-    # Add your code here
-    #------------------------
-    raise NotImplementedError("This function is not implemented yet.")
-    #------------------------
-
-#---------------------------------------
-
+  return score+10 if correct else score
 def next_round(round_number):
     """
     Increase the round number after each question.
@@ -136,13 +133,7 @@ def next_round(round_number):
     Returns:
     - int: The next round number.
     """
-    #------------------------
-    # Add your code here
-    #------------------------
-    raise NotImplementedError("This function is not implemented yet.")
-    #------------------------
-
-#---------------------------------------
+    return round_number+1
 
 def check_game_over(incorrect_answers):
     """
@@ -154,14 +145,7 @@ def check_game_over(incorrect_answers):
     Returns:
     - bool: True if the game should be over, False otherwise.
     """
-    #------------------------
-    # Add your code here
-    #------------------------
-    raise NotImplementedError("This function is not implemented yet.")
-    #------------------------
-
-#---------------------------------------
-
+    return  incorrect_answers>=3
 def restart_or_exit():
     """
     Restart the game or exit after the game is over.
@@ -169,10 +153,8 @@ def restart_or_exit():
     Parameters: None
     Returns: None
     """
-    #------------------------
-    # Add your code here
-    #------------------------
-    raise NotImplementedError("This function is not implemented yet.")
-    #------------------------
-
-#---------------------------------------
+   choice=input()
+   if choice=="yes":
+       run_game_round(["math',"science","history"])
+   else:
+       print("thankyou for palying")
