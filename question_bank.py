@@ -1,6 +1,6 @@
 #---------------------------------------
 #  Question Bank
-#    Student B
+#    Student B Rabbiya Asad
 #---------------------------------------
 
 import random
@@ -34,6 +34,12 @@ def select_random_question(category):
     """
     #------------------------
     # Add your code here
+    if category in questions: 
+        question,answer=random.choice(question[category])
+        return question,answer
+    else:
+        return "category not found",""
+    
     #------------------------
     raise NotImplementedError("This function is not implemented yet.")
     #------------------------
@@ -53,6 +59,10 @@ def check_answer(player_answer, correct_answer):
     """
     #------------------------
     # Add your code here
+    if player_answer.lower()==correct_answer.lower():
+        return True
+    else:
+        return False
     #------------------------
     raise NotImplementedError("This function is not implemented yet.")
     #------------------------
@@ -72,6 +82,16 @@ def remove_question(category, question):
     """
     #------------------------
     # Add your code here
+       if category in questions:
+           for q, a in questions[category]:
+               if q==question:
+                   questions[category].remove((q,a))
+                   print(f"the question'{question}has been removed")
+                   return
+            print("question not found")
+       else:
+          print("category not found")
+           
     #------------------------
     raise NotImplementedError("This function is not implemented yet.")
     #------------------------
@@ -90,6 +110,9 @@ def display_question_and_accept_answer(question):
     """
     #------------------------
     # Add your code here
+     print(question)
+     player_answer=input("your answer)
+     return player_answer
     #------------------------
     raise NotImplementedError("This function is not implemented yet.")
     #------------------------
@@ -109,6 +132,15 @@ def provide_hint(category, question):
     """
     #------------------------
     # Add your code here
+    if category=="Science" and question =="What is the chemical symbol for water"):
+      return "Hint :it's made up of hydogen and oxygen."
+    if category =="Math" and question=="what is 2+2?":
+      return "Hint:It's a basic addition of two numbers."
+    if category=="History" and question =="Who was the first U.S president?":
+      return "Hint:He is often called the father of the Nation."
+
+    return "No hint available for this question."
+        
     #------------------------
     raise NotImplementedError("This function is not implemented yet.")
     #------------------------
@@ -127,6 +159,7 @@ def display_correct_answer(correct_answer):
     """
     #------------------------
     # Add your code here
+    print("the correct_answer is:"correct_answer)
     #------------------------
     raise NotImplementedError("This function is not implemented yet.")
     #------------------------
